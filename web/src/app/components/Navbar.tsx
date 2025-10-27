@@ -3,28 +3,48 @@
 import Link from "next/link";
 
 export default function Navbar() {
+  const navItems = [
+    { label: "Beranda", href: "#" },
+    { label: "Jadwal", href: "#" },
+    { label: "Wisata", href: "#" },
+    { label: "Testimoni", href: "#" },
+    { label: "Tiket", href: "#" },
+    { label: "Kontak", href: "#" },
+  ];
+
   return (
-    <nav className="flex justify-between items-center px-8 py-4 bg-white shadow-md sticky top-0 z-50">
-      {/* Logo */}
-      <div className="flex items-center gap-2">
-        {/* <img src="/images/logo.png" alt="LamiGo" className="w-10" /> */}
-        <span className="font-bold text-xl text-blue-700">LamiGo</span>
+    <nav className="sticky top-0 z-50 bg-white shadow-md">
+      <div className="max-w-7xl mx-auto flex items-center justify-between px-8 py-4">
+        {/* Logo */}
+        <Link
+          href="/"
+          className="text-2xl font-bold text-blue-700 tracking-wide"
+        >
+          LamiGo
+        </Link>
+
+        {/* Menu Navigasi */}
+        <ul className="hidden md:flex gap-8 text-gray-700 font-medium">
+          {navItems.map((item) => (
+            <li key={item.label}>
+              <Link
+                href={item.href}
+                className="hover:text-blue-700 transition-colors duration-200"
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+
+        {/* Tombol CTA */}
+        <button
+          type="button"
+          className="bg-blue-800 text-white px-5 py-2 rounded-md font-semibold hover:bg-blue-900 transition-colors duration-200"
+        >
+          Ayo Liburan
+        </button>
       </div>
-
-      {/* Menu */}
-      <ul className="hidden md:flex gap-6 text-gray-700 font-medium">
-        <li><Link href="#">Beranda</Link></li>
-        <li><Link href="#">Jadwal</Link></li>
-        <li><Link href="#">Wisata</Link></li>
-        <li><Link href="#">Testimoni</Link></li>
-        <li><Link href="#">Tiket</Link></li>
-        <li><Link href="#">Kontak</Link></li>
-      </ul>
-
-      {/* Tombol Ayo Liburan */}
-      <button className="bg-blue-800 text-white px-5 py-2 rounded-md hover:bg-blue-900 transition">
-        Ayo Liburan
-      </button>
     </nav>
   );
 }
