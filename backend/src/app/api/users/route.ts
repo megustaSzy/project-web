@@ -28,4 +28,11 @@ export const GET = async() => {
 export const POST = async(request: NextRequest) => {
     // simpan data
     const data = await request.json();
+
+    // cek apakah email sudah ada
+    const existingUser = await prisma.tb_user.findUnique({
+        where: {
+            email: data.email
+        },
+    });
 }
