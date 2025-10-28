@@ -8,7 +8,7 @@ export const GET = async() => {
         orderBy: {
             id: 'asc',
         },
-            select: {
+        select: {
             id: true,
             name: true,
             email: true,
@@ -23,4 +23,3 @@ export const GET = async() => {
         users: users
     })
 };
-
