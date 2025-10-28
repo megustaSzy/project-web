@@ -19,7 +19,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Konten */}
-      <div className="relative z-10 max-w-2xl text-center">
+      <div className="relative z-10 max-w-2xl text-left ml-[-90]">
         <HeroSubtitle text="Quality cleaning at a fair price." />
         <HeroTitle title="Specialized, efficient, and thorough cleaning services" />
         <HeroDescription text="We provide performing cleaning tasks using the least amount of time, energy, and money." />
