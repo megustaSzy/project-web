@@ -1,5 +1,5 @@
 import { PrismaClient } from "@/generated/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
@@ -23,3 +23,9 @@ export const GET = async() => {
         users: users
     })
 };
+
+
+export const POST = async(request: NextRequest) => {
+    // simpan data
+    const data = await request.json();
+}
