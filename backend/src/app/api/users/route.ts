@@ -35,4 +35,23 @@ export const POST = async(request: NextRequest) => {
             email: data.email
         },
     });
+
+    if(existingUser) {
+        return NextResponse.json({
+            success: false,
+            message: "email sudah terdaftar"
+        });
+    }
+
+    // simpen user baru
+
+    const user = await prisma.tb_user.create({
+        data: {
+            name: data.name,
+            email: data.email,
+            password: data.password,
+            role: data.role || "User"
+        },
+    });
+    
 }
