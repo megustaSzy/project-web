@@ -42,34 +42,16 @@ export const GET = async (req: Request,
 // DELETE
 
 export const DELETE = async (req: NextRequest,
-    { params }: { params: {id: string} }) => {
+    context: { params: Promise<{ id: string }> }) => {
 
+        const { id } = await context.params;
+        const userId = Number(id)
 
-        // cek apakah user ditemukan
-        const check = await prisma.tb_user.findUnique({
-            where: {
-                id: Number(params.id)
-            }
-        })
-
-        // jika user tidak ditemukan
-        if(!check) {
+        // validasi ID
+        if(isNaN(userId)) {
             return NextResponse.json({
-                message: "user gagal dihapus",
-                success: true
+                message: "id tidak valid",
+                success: false
             })
         }
-
-        // jika users dihapus
-        await prisma.tb_user.delete({
-            where: {
-                id: Number(params.id)
-            }
-        })
-
-        return NextResponse.json({
-            message: "user berhasil dihapus",
-            success: true
-        })
-
     }
