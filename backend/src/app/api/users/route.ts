@@ -7,15 +7,8 @@ const prisma = new PrismaClient();
 export const GET = async() => {
     const users = await prisma.tb_user.findMany({
         orderBy: {
-            email: 'asc',
+            id: 'asc',
         },
-        select: {
-            name: true,
-            email: true,
-            password: true, 
-            role: true,
-            createdAt: true
-        }
     });
 
     // menampilkan data users
@@ -38,8 +31,8 @@ export const POST = async(request: NextRequest) => {
     
         if(existingUser) {
             return NextResponse.json({
+                message: "email sudah terdaftar",
                 success: false,
-                message: "email sudah terdaftar"
             });
         }
         // simpen user baru
@@ -53,15 +46,15 @@ export const POST = async(request: NextRequest) => {
         });
     
         return NextResponse.json({
-            success: true,
-            message: "user berhasil dibuat"
+            message: "user berhasil dibuat",
+            success: true
         });
         
     } catch (error) {
         console.error(error);
         return NextResponse.json({
-            success: false,
-            message: "terjadi kesalahan saat membuat user"
+            message: "terjadi kesalahan saat membuat user",
+            success: false
         })
     }
 }
