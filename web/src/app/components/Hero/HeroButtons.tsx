@@ -14,7 +14,7 @@ export default function HeroButtons({
   onSecondaryClick,
 }: HeroButtonsProps) {
   return (
-    <div className="flex gap-4 justify-center">
+    <div className="flex gap-4 justify-start">
       <button
         onClick={onPrimaryClick}
         className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-md font-medium transition-colors duration-200"
