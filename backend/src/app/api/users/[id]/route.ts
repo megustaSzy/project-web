@@ -1,8 +1,9 @@
 import { PrismaClient } from "@/generated/prisma";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
+// GET id
 export const GET = async (req: Request,
   context: { params: Promise<{ id: string }> }) => {
 
@@ -37,3 +38,17 @@ export const GET = async (req: Request,
         user,
     });
 };
+
+// DELETE
+
+export const DELETE = async (req: NextRequest,
+    { params }: { params: {id: string} }) => {
+        
+        const check = await prisma.tb_user.findUnique({
+            where: {
+                id: Number(params.id)
+            }
+        })
+
+        // jika barang ditemukan
+    }
