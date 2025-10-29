@@ -43,12 +43,33 @@ export const GET = async (req: Request,
 
 export const DELETE = async (req: NextRequest,
     { params }: { params: {id: string} }) => {
-        
+
+
+        // cek apakah user ditemukan
         const check = await prisma.tb_user.findUnique({
             where: {
                 id: Number(params.id)
             }
         })
 
-        // jika barang ditemukan
+        // jika user tidak ditemukan
+        if(!check) {
+            return NextResponse.json({
+                message: "user gagal dihapus",
+                success: true
+            })
+        }
+
+        // jika users dihapus
+        await prisma.tb_user.delete({
+            where: {
+                id: Number(params.id)
+            }
+        })
+
+        return NextResponse.json({
+            message: "user berhasil dihapus",
+            success: true
+        })
+
     }
