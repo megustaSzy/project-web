@@ -7,15 +7,8 @@ const prisma = new PrismaClient();
 export const GET = async() => {
     const users = await prisma.tb_user.findMany({
         orderBy: {
-            email: 'asc',
+            id: 'asc',
         },
-        select: {
-            name: true,
-            email: true,
-            password: true, 
-            role: true,
-            createdAt: true
-        }
     });
 
     // menampilkan data users
