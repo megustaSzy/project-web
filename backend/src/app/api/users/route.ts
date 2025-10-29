@@ -1,5 +1,4 @@
 import { PrismaClient } from "@/generated/prisma";
-import next from "next";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
