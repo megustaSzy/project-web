@@ -1,19 +1,39 @@
 import { PrismaClient } from "@/generated/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-// ambil data user berdasarkan id
-export const GET = async(request: NextRequest,
-    { params }: { params: { id: string}}) => {
+export const GET = async (req: Request,
+  context: { params: Promise<{ id: string }> }) => {
 
-        const id = Number(params.id);
+  const { id } = await context.params; 
+  const userId = Number(id);
 
-        // validasi id
-        if (isNaN(id)) {
-            return NextResponse.json({
-                message: "id tidak valid",
-                success: false
+  // Validasi ID
+  if (isNaN(userId)) {
+    return NextResponse.json(
+      {
+        message: "ID tidak valid",
+        success: false,
+      });
+  }
+
+  // Ambil user berdasarkan ID
+    const user = await prisma.tb_user.findUnique({
+        where: { id: userId },
+    });
+
+  // Jika data tidak ditemukan
+    if (!user) {
+        return NextResponse.json(
+            {
+                message: "user tidak ditemukan",
+                success: false,
             });
         }
-    }
+
+  // Jika data ditemukan
+    return NextResponse.json({
+        user,
+    });
+};
