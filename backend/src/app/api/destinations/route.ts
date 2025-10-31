@@ -1,8 +1,4 @@
-import { PrismaClient } from "@/generated/prisma";
-import { NextResponse } from "next/server";
-
-
-const prisma = new PrismaClient();
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async () => {
     try {
@@ -23,5 +19,16 @@ export const GET = async () => {
             message: "gagal mengambil data destinasi",
             success: false
         })
+    }
+}
+
+export const POST = async (req: NextRequest) => {
+    try {
+        const data = await req.json();
+
+
+
+    } catch (error) {
+        
     }
 }
