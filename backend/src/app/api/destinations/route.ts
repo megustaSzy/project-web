@@ -1,34 +1,18 @@
+import { createDestination, getAllDestinations } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
 
+// response GET
 export const GET = async () => {
-    try {
-        const destinations = await prisma.tb_destination.findMany({
-            orderBy: {
-                id: 'asc'
-            }
-        });
+    const destinations = await getAllDestinations();
 
-        return NextResponse.json({
-            destinations
-        });
-
-    } catch (error) {
-        console.error(error);
-
-        return NextResponse.json({
-            message: "gagal mengambil data destinasi",
-            success: false
-        })
-    }
+    return NextResponse.json({
+        destinations
+    })
 }
 
 export const POST = async (req: NextRequest) => {
-    try {
-        const data = await req.json();
+    const data = await req.json();
+    const result = await createDestination(data);
 
-
-
-    } catch (error) {
-        
-    }
-}
+    return NextResponse.json(result)
+};
