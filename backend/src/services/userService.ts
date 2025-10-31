@@ -2,6 +2,12 @@ import { PrismaClient } from "@/generated/prisma";
 
 const prisma = new PrismaClient();
 
+interface UserData {
+    name: string,
+    email: string,
+    password: string,
+    role?: string
+}
 
 // ambil user dari DB
 export const getAllUsers = async () => {
@@ -35,4 +41,14 @@ export const isEmailUsedByAnotherUser = async (id: number, email: string) => {
         },
     });
     return !!existing;
+}
+
+// create new user
+
+export const createUser = async (data: UserData) => {
+    const existing = await prisma.tb_user.findUnique({
+        where: {
+            email: data.email
+        },
+    });
 }
