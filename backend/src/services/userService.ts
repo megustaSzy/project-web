@@ -73,3 +73,15 @@ export const createUser = async (data: UserData) => {
     }
 };
 
+// UPDATE USER
+export const updateUser = async (id: number, data: UserData) => {
+    await prisma.tb_user.update({
+        where: {
+            id
+        },
+        data
+    })
+}
+
+
+
