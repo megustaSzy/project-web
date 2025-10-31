@@ -1,48 +1,35 @@
-import { PrismaClient } from "@/generated/prisma";
+import { createUser, getAllUsers } from "@/services/userService";
 import { NextRequest, NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+export const GET = async () => {
+  try {
+    const users = await getAllUsers();
 
-export const GET = async() => {
-    const users = await prisma.tb_user.findMany({
-        orderBy: {
-            id: 'asc',
-        },
+    return NextResponse.json({ 
+        users 
     });
 
-    // menampilkan data users
+  } catch (error) {
+
+    console.error(error);
+    
     return NextResponse.json({
-        users: users
-    })
+      message: "Gagal mengambil data user",
+      success: false,
+    });
+  }
 };
 
 
 export const POST = async(request: NextRequest) => {
     try {
         const data = await request.json();
-    
-        // cek apakah email sudah ada
-        const existingUser = await prisma.tb_user.findUnique({
-            where: {
-                email: data.email
-            },
-        });
-    
-        if(existingUser) {
-            return NextResponse.json({
-                message: "email sudah terdaftar",
-                success: false,
-            });
+        
+        const result = await createUser(data);
+
+        if(!result.success) {
+            return NextResponse.json(result);
         }
-        // simpen user baru
-        await prisma.tb_user.create({
-            data: {
-                name: data.name,
-                email: data.email,
-                password: data.password,
-                role: data.role || "User"
-            },
-        });
     
         return NextResponse.json({
             message: "user berhasil dibuat",
