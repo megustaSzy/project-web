@@ -14,7 +14,7 @@ export const GET = async () => {
     console.error(error);
     
     return NextResponse.json({
-      message: "Gagal mengambil data user",
+      message: "gagal mengambil data user",
       success: false,
     });
   }
