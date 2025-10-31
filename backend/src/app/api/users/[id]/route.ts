@@ -1,7 +1,12 @@
-import { PrismaClient } from "@/generated/prisma";
+import { 
+    deleteUser, 
+    getUserById, 
+    isEmailUsedByAnotherUser, 
+    updateUser } 
+    from "@/services/userService";
 import { NextRequest, NextResponse } from "next/server";
 
-const prisma = new PrismaClient();
+
 
 // GET id
 export const GET = async (req: Request,
@@ -20,9 +25,7 @@ export const GET = async (req: Request,
   }
 
   // Ambil user berdasarkan ID
-    const user = await prisma.tb_user.findUnique({
-        where: { id: userId },
-    });
+    const user = await getUserById(userId);
 
   // Jika data tidak ditemukan
     if (!user) {
@@ -43,8 +46,9 @@ export const GET = async (req: Request,
 export const DELETE = async (req: NextRequest,
     context: { params: Promise<{ id: string }> }) => {
 
-        const {id} = await context.params
-        const userId = Number(id)
+        const {id} = await context.params;
+        const userId = Number(id);
+
 
         // validasi ID
         if(isNaN(userId)) {
@@ -54,31 +58,8 @@ export const DELETE = async (req: NextRequest,
             });
         }
 
-        // cek apakah user ada
-        const user = await prisma.tb_user.findUnique({
-            where: {
-                id: userId
-            }
-        });
-
-        // jika user tidak ditemukan
-        if(!user) {
-            return NextResponse.json({
-                message: "user gagal dihapus",
-                success: false
-            })
-        }
-
-        await prisma.tb_user.delete({
-            where: {
-                id: userId
-            }
-        });
-
-        return NextResponse.json({
-            message: "user berhasil dihapus",
-            success: true
-        })
+        const result = await deleteUser(userId);
+        return NextResponse.json(result);
 }
 
 
@@ -97,43 +78,17 @@ export const PUT = async (request: NextRequest,
             })
         }
 
-    // cek apakah id sudah ada / belum
-        const check = await prisma.tb_user.findFirst({
-            where : {
-                id : {
-                    not: userId
-                },
-                email: data.email
-            },
-            select : {
-                id : true
-            }
-    })
+        const emailUsed = await isEmailUsedByAnotherUser(userId, data.email);
+        if(emailUsed) {
+            return NextResponse.json({
+                message: "email sudah digunakan user lain",
+                success: false
+            });
+        }
 
-    // jika data tidak ditemukan
-    if (check) {
+        await updateUser(userId, data);
         return NextResponse.json({
-            message: "Data user gagal diubah (email user sudah digunakan)",
-            success: false
-        })
-    }
-
-    //update data user
-    await prisma.tb_user.update({
-        where : {
-            id : userId
-        },
-        data: {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            role: data.role
-        } 
-    })
-
-    return NextResponse.json({
-            message: "Data user berhasil diubah",
+            message: "data berhasil diubah",
             success: true
-        })
-
+        });
 }
