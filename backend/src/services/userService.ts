@@ -22,3 +22,17 @@ export const getUserById = async (id: number) => {
         }
     })
 }
+
+
+// cek email apakah sudah diapkai user lain
+export const isEmailUsedByAnotherUser = async (id: number, email: string) => {
+    const existing = await prisma.tb_user.findFirst({
+        where: {
+            id: {
+                not: id,
+            },
+            email
+        },
+    });
+    return !!existing;
+}
