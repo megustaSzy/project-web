@@ -1,11 +1,7 @@
 import { PrismaClient } from "@/generated/prisma";
 import { NextRequest, NextResponse } from "next/server";
 
-
-
-
 const prisma = new PrismaClient();
-
 
 // UPDATE
 export const DELETE = async(request: NextRequest, { params }: { params: { id: string }}) => {
@@ -76,4 +72,31 @@ export const PUT = async(request: NextRequest, { params }: { params: { id: strin
         message: "data destinasi berhasil dihapus",
         success: true
     })
+}
+
+
+// GET by ID
+
+export const GET = async (request: NextRequest,  { params }: { params: {id: string} }) => {
+
+    const id = params.id
+
+    const destination = await prisma.tb_destination.findUnique({
+        where: {
+            id: Number(id)
+        }
+    })
+
+    if(!destination) {
+        return NextResponse.json({
+            message: "destinasi tidak ditemukan",
+            success: false
+        })
+    }
+
+    return NextResponse.json({
+        destination
+    })
+
+
 }
