@@ -20,6 +20,7 @@ model tb_user {
   email     String   @unique
   password  String
   role      Role     @default(User)
+  bookings  tb_booking[] // relasi pemesanan
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -30,11 +31,23 @@ enum Role {
 }
 
 model tb_destination {
-  id              Int     @id @default(autoincrement())
-  name            String  @db.VarChar(50)
-  location        String  @db.VarChar(50)
-  description     String?
+  id              Int       @id @default(autoincrement())
+  name            String    @db.VarChar(50)
+  description     String?   @db.Text
+  location        String    @db.VarChar(120)
+  imageUrl        String?   @db.VarChar(255)
   price           Int
+  pickupLocations tb_pickup_location[] // relasi lokasi penjemputan
+  bookings        tb_booking[]         // relasi pemesanan
   createdAt       DateTime  @default(now())
   updatedAt       DateTime  @updatedAt
 }
+
+model tb_pickup_location {
+  id             Int               @id @default(autoincrement())
+  name           String            @db.VarChar(100)
+  address        String?           @db.VarChar(200)
+  destinationId  Int
+  destination    tb_destination    @relation(fields: [destinationId], references: [id]) 
+}
+
