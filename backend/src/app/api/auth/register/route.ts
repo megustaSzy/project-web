@@ -23,10 +23,40 @@ export const POST = async (request: NextRequest) => {
             where: {
                 email
             }
+        });
+
+        if(existingUser) {
+            return NextResponse.json({
+                message: "email sudah terdaftar",
+                success: false
+            })
+        }
+
+        // enkripsi password
+        const hashedPassword = await bcrypt.hash(password, 10)
+
+        // simpan user baru ke db
+        await prisma.tb_user.create({
+            data: {
+                name,
+                email,
+                password: hashedPassword,
+                role: 'User'
+            },
+        });
+
+        return NextResponse.json({
+            message: "registrasi berhasil",
+            success: true
         })
 
 
     } catch (error) {
-        
+        console.log(error);
+
+        return NextResponse.json({
+            message: "terjadi kesalahan saat registrasi",
+            success: false
+        })
     }
 }
