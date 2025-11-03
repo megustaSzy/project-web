@@ -1,31 +1,34 @@
 "use client";
 
-import JadwalSubtitle from "./JadwalSubtitle";
-import JadwalTitle from "./JadwalTitle";
-import JadwalDescription from "./JadwalDescription";
-import JadwalButtons from "./JadwalButtons";
-
 export default function Jadwal() {
   return (
-    <section
-      className="relative h-[85vh] flex items-center justify-center text-white"
-      style={{
-        backgroundImage: "url('/images/bg.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
-    >
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/40" />
+    <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-20 py-16 bg-white">
+      {/* Kiri - Teks */}
+      <div className="max-w-lg text-left">
+        <h2 className="text-4xl font-bold text-gray-900 mb-4">
+          Lokasi Penjemputan <span className="text-blue-700">LamiGo</span>
+        </h2>
+        <p className="text-gray-600 mb-6">
+          Ayo berwisata lebih efisien menggunakan LamiGo
+        </p>
+        <button className="bg-blue-700 hover:bg-blue-800 text-white font-medium px-6 py-3 rounded-md shadow-md transition">
+          Lihat Jadwal
+        </button>
+      </div>
 
-      {/* Konten */}
-      <div className="relative z-10 max-w-2xl text-left ml-[-90]">
-        <JadwalSubtitle text="Pelayanan Transportasi Integrasi Wisata." />
-        <JadwalTitle title="Pilih Destinasi Wisatamu" />
-        <JadwalDescription text="Gunakan Layanan Kami Untuk Pengalaman Wisatamu Yang Lebih Baik." />
-        <JadwalButtons
-          primaryText="Ayo Liburan"
-          secondaryText="View all Services"
+      {/* Kanan - Gambar */}
+      <div className="relative mt-10 md:mt-0 flex gap-6">
+        {/* Gambar depan */}
+        <img
+          src="/images/terminal.jpg"
+          alt="Lokasi Penjemputan"
+          className="w-52 h-52 rounded-xl shadow-lg object-cover z-20"
+        />
+        {/* Gambar belakang */}
+        <img
+          src="/images/stasiun.jpg"
+          alt="Lokasi Tambahan"
+          className="w-52 h-52 rounded-xl shadow-lg object-cover translate-x-[-30%] translate-y-[30%] z-10"
         />
       </div>
     </section>
