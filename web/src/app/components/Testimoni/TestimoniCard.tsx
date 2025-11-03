@@ -9,7 +9,7 @@ interface TestimoniCardProps {
 
 export default function TestimoniCard({ name, image, text }: TestimoniCardProps) {
   return (
-    <Section>id = "Testimoni"
+    <Section> id = "Testimoni"
     <div id = "Testimoni" className="bg-white rounded-xl shadow-md overflow-hidden w-full md:w-[300px] border border-gray-200">
       <div className="w-full h-64 relative">
         <Image
