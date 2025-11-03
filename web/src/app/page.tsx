@@ -4,6 +4,7 @@ import Jadwal from "./components/Jadwal/Jadwal";
 import Testimoni from "./components/Testimoni";
 import Wisata from "./components/Wisata/Wisata";
 import Kontak from "./components/Kontak/Kontak";
+import tabeljadwal from "./components/Jadwal/tabeljadwal";
 export default function Home() {
   return (
    <main>

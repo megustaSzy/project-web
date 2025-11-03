@@ -57,7 +57,7 @@ export default function TabelJadwal() {
             KEPULANGAN
           </div>
 
-          {data.map((item: Jadwal, i: number) => (
+          {data.map((item, i) => (
             <div key={i} className="contents">
               <div className="bg-blue-100 rounded-xl py-2 font-semibold text-gray-800">
                 {item.kode}
