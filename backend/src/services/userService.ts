@@ -18,7 +18,6 @@ export const getAllUsers = async () => {
     });
 };
 
-
 // ambil user berdasarkan ID
 
 export const getUserById = async (id: number) => {
