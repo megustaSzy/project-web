@@ -17,8 +17,7 @@ export default function TestimoniSection() {
   ];
 
   return (
-    <section
-      id="testimoni"
+    <section id = "Testimoni"   
       className="w-full py-24 px-6 md:px-12 bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/images/testimonibg.png')" }}
     >
