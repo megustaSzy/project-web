@@ -67,7 +67,7 @@ export default function KontakPage() {
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-600"
             />
             <textarea
-              rows="4"
+              rows={4}
               placeholder="Komentar"
               className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:outline-none focus:border-blue-600"
             ></textarea>
