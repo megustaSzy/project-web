@@ -56,3 +56,38 @@ export const createDestination = async(data: DestinationData) => {
         success: true
     }
 }
+
+export const updateDestination = async(id: number, data: DestinationData) => {
+    await prisma.tb_destination.update({
+        where: {
+            id
+        },
+        data
+    })
+}
+
+export const deleteDestination = async (id: number) => {
+    const user = await prisma.tb_user.findUnique({
+        where: {
+            id
+        }
+    });
+    
+    if(!user) {
+        return {
+            message: "user tidak ditemukan",
+            success: false
+        }
+    }
+
+    await prisma.tb_user.delete({
+        where: {
+            id
+        }
+    });
+
+    return {
+        message: "user berhasil dihapus",
+        success: true
+    }
+}

@@ -19,9 +19,7 @@ export const GET = async() => {
     }
 }
 
-
 // POST destination
-
 export const POST = async (request: NextRequest) => {
     try {
         const data = await request.json();

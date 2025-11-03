@@ -1,34 +1,27 @@
 import { PrismaClient } from "@/generated/prisma";
-import { getDestinationsById } from "@/services/destinationService";
+import { deleteDestination, getDestinationsById, updateDestination } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
 
-// UPDATE
-export const DELETE = async(request: NextRequest, { params }: { params: { id: string }}) => {
-    const check = await prisma.tb_destination.findUnique({
-        where: {
-            id: Number(params.id)
+// DELETE
+export const DELETE = async (req: NextRequest,
+    context: { params: Promise<{ id: string }> }) => {
+
+        const {id} = await context.params;
+        const userId = Number(id);
+
+
+        // validasi ID
+        if(isNaN(userId)) {
+            return NextResponse.json({
+                message: "id tidak valid",
+                success: false
+            });
         }
-    })
 
-    if(!check) {
-        return NextResponse.json({
-            message: "data destinasi gagal dihapus",
-            success: false
-        })
-    }
-
-    await prisma.tb_destination.delete({
-        where: {
-            id: Number(params.id)
-        }
-    })
-
-    return NextResponse.json({
-        message: "data destinasi berhasil dihapus",
-        success: true
-    })
+        const result = await deleteDestination(userId);
+        return NextResponse.json(result);
 }
 
 export const PUT = async(request: NextRequest, { params }: { params: { id: string }}) => {
@@ -56,18 +49,7 @@ export const PUT = async(request: NextRequest, { params }: { params: { id: strin
         })
     }
 
-    await prisma.tb_destination.update({
-        where: {
-            id: Number(id)
-        },
-        data: {
-            name: data.name,
-            description: data.description,
-            imageUrl: data.imageUrl,
-            price: data.price,
-            location: data.location
-        }
-    });
+    await updateDestination(Number(id), data)
 
     return NextResponse.json({
         message: "data destinasi berhasil dihapus",
