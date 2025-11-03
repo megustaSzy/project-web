@@ -46,41 +46,45 @@ export const getOrderById = async (id: number) => {
 
 // create pesanan baru
 
-export const createOrder = async(data: OrderData) => {
+export const createOrder = async (data: OrderData) => {
+  try {
     const destination = await prisma.tb_destination.findUnique({
-        where: {
-            id: data.destinationId
-        }
+      where: { id: data.destinationId },
     });
 
-    if(!destination) {
-        return {
-            message: "destinasi tidak ditemukan",
-            success: false
-        }
-    };
+    if (!destination) {
+      return { message: "destinasi tidak ditemukan", success: false };
+    }
 
     const totalPrice = destination.price * data.quantity;
 
     await prisma.tb_order.create({
-        data: {
-            userId: data.userId,
-            destinationId: data.destinationId,
-            jadwal: data.jadwal,
-            quantity: data.quantity,
-            totalPrice,
-            status: "Pending",
-        }
+      data: {
+        userId: data.userId,
+        destinationId: data.destinationId,
+        jadwal: new Date(`${data.jadwal}T00:00:00.000Z`),
+        quantity: data.quantity,
+        totalPrice,
+        status: Status.Pending, // ✅ enum sesuai schema
+      },
     });
 
     return {
-        message: "pesanan berhasil dibuat",
-        success: true
-    }
-}
+      message: "pesanan berhasil dibuat",
+      success: true,
+    };
+  } catch (error) {
+    console.error("❌ Error createOrder:", error);
+    return {
+      message: "Gagal membuat pesanan",
+      success: false,
+    };
+  }
+};
+
 
 // update status pesanan
-export const updateOrder = async(id: number, status: string) => {
+export const updateOrderStatus = async(id: number, status: string) => {
     const order = await prisma.tb_order.findUnique({
         where: {
             id
