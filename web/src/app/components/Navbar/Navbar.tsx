@@ -13,8 +13,8 @@ interface NavItemType {
 export default function Navbar() {
   const navItems: NavItemType[] = [
     { label: "Beranda", href: "#" },
-    { label: "Jadwal", href: "#" },
     { label: "Wisata", href: "#" },
+    { label: "Jadwal", href: "#" },
     { label: "Testimoni", href: "#" },
     { label: "Tiket", href: "#" },
     { label: "Kontak", href: "#" },
