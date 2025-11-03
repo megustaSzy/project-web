@@ -24,8 +24,6 @@ model tb_user {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  // relasi 
-  bookings    tb_booking[]
 }
 
 enum Role {
@@ -95,4 +93,27 @@ enum BookingStatus {
   Pending
   Confirmed
   Cancelled
+}
+
+model tb_payment {
+  id          Int      @id @default(autoincrement())
+  bookingId   Int      @unique
+  amount      Int
+  method      PaymentMethod
+  status      PaymentStatus @default(Unpaid)
+  createdAt   DateTime @default(now())
+
+  // Relasi
+  booking     tb_booking @relation(fields: [bookingId], references: [id])
+}
+
+enum PaymentMethod {
+  Transfer
+  Cash
+}
+
+enum PaymentStatus {
+  Unpaid
+  Paid
+  Failed
 }
