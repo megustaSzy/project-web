@@ -32,7 +32,6 @@ export const GET = async() => {
 
 export const POST = async (request: NextRequest) => {
     try {
-        
         const data = await request.json();
 
         const check = await prisma.tb_destination.findFirst({
