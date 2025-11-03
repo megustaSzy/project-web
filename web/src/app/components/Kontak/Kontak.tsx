@@ -18,7 +18,7 @@ export default function KontakPage() {
               </div>
               <div>
                 <h4 className="font-semibold text-gray-800">Telpon</h4>
-                <p className="text-gray-600">(+08) 255 201 888</p>
+                <p className="text-gray-600">(+62) 123-456-789</p>
               </div>
             </div>
 
@@ -29,7 +29,7 @@ export default function KontakPage() {
               </div>
               <div>
                 <h4 className="font-semibold text-gray-800">Email</h4>
-                <p className="text-gray-600">Hello@procleaning.com</p>
+                <p className="text-gray-600">Lamigo@Gmail.ac.id</p>
               </div>
             </div>
 
@@ -39,9 +39,9 @@ export default function KontakPage() {
                 <MapPin size={22} />
               </div>
               <div>
-                <h4 className="font-semibold text-gray-800">Address</h4>
+                <h4 className="font-semibold text-gray-800">Alamat</h4>
                 <p className="text-gray-600">
-                  7510, Brand Tower, New York, USA
+                  Kota Bandar Lampung , Lampung Indonesia
                 </p>
               </div>
             </div>
