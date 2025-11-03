@@ -1,5 +1,10 @@
 "use client";
 
+import { Router } from "lucide-react";
+import Link from "next/link";
+
+import { useRouter } from "next/navigation"; // ← ini yang benar untuk Next.js 13+
+
 export default function Jadwal() {
   return (
     <section id = "Jadwal"
@@ -13,7 +18,10 @@ export default function Jadwal() {
         <p className="text-gray-600 text-lg mb-8">
           Ayo berwisata lebih efisien menggunakan LamiGo
         </p>
-        <button className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition-all duration-300">
+     <button
+          onClick={() => Router.push("/tabeljadwal")}
+          className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-3 rounded-lg shadow-md transition-all duration-300"
+        >
           Lihat Jadwal
         </button>
       </div>
