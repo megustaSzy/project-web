@@ -1,41 +1,58 @@
 import { PrismaClient } from "@/generated/prisma";
 
-
 const prisma = new PrismaClient();
 
+interface DestinationData {
+    name: string,
+    description: string,
+    imageUrl: string,
+    price: number,
+    location: string
+}
 
-// ambil destinasi
-export const getAllDestinations= async () => {
-    return await prisma.tb_destination.findMany({
+// GET destinations
+export const getAllDestinations = async () => {
+    return prisma.tb_destination.findMany({
         orderBy: {
             id: 'asc'
-        },
-    });
-};
+        }
+    })
+}
 
-//tambah destinasi baru
-export const createDestination = async (data: {
-    name: string;
-    location: string;
-    description?: string;
-    price: number
-}) => {
+// GET by ID destinations
+export const getDestinationsById = async (id: number) => {
+    return prisma.tb_destination.findUnique({
+        where: {
+            id
+        }
+    })
+}
 
-    // validasi
-    if(!data.name || !data.location || !data.price) {
+export const createDestination = async(data: DestinationData) => {
+    const existing = await prisma.tb_destination.findFirst({
+        where: {
+            name: data.name
+        }
+    })
+
+    if(existing) {
         return {
-            message: "semua field wajib diisi",
+            message: "nama destinasi gagal disimpan",
             success: false
         };
     }
 
     await prisma.tb_destination.create({
-        data
-    })
+        data: {
+            name: data.name,
+            description: data.description,
+            imageUrl: data.imageUrl,
+            price: data.price,
+            location: data.location
+        }
+    });
 
     return {
-        message: "destinasi berhasil ditambahkan",
         success: true
     }
-
 }
