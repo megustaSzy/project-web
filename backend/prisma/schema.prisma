@@ -23,6 +23,9 @@ model tb_user {
   bookings  tb_booking[] // relasi pemesanan
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  // relasi 
+  bookings    tb_booking[]
 }
 
 enum Role {
@@ -31,23 +34,65 @@ enum Role {
 }
 
 model tb_destination {
-  id              Int       @id @default(autoincrement())
-  name            String    @db.VarChar(50)
-  description     String?   @db.Text
-  location        String    @db.VarChar(120)
-  imageUrl        String?   @db.VarChar(255)
+  id              Int      @id @default(autoincrement())
+  name            String   @db.VarChar(50)
+  location        String   @db.VarChar(120)
+  description     String?  @db.VarChar(255)
   price           Int
-  pickupLocations tb_pickup_location[] // relasi lokasi penjemputan
-  bookings        tb_booking[]         // relasi pemesanan
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relasi
+  pickupLocations tb_pickup_location[]
+  schedules       tb_schedule[]
+  bookings        tb_booking[]
 }
 
 model tb_pickup_location {
-  id             Int               @id @default(autoincrement())
-  name           String            @db.VarChar(100)
-  address        String?           @db.VarChar(200)
+  id             Int      @id @default(autoincrement())
+  name           String   @db.VarChar(100)
+  address        String?  @db.VarChar(255)
   destinationId  Int
-  destination    tb_destination    @relation(fields: [destinationId], references: [id]) 
+  createdAt      DateTime @default(now())
+
+  // Relasi
+  destination    tb_destination @relation(fields: [destinationId], references: [id])
+  bookings       tb_booking[]
 }
 
+
+model tb_schedule {
+  id             Int      @id @default(autoincrement())
+  departureTime  DateTime
+  destinationId  Int
+  createdAt      DateTime @default(now())
+
+  // Relasi
+  destination    tb_destination @relation(fields: [destinationId], references: [id])
+  bookings       tb_booking[]
+}
+
+model tb_booking {
+  id               Int      @id @default(autoincrement())
+  userId           Int
+  destinationId    Int
+  pickupLocationId Int
+  scheduleId       Int
+  passengers       Int
+  totalPrice       Int
+  status           BookingStatus @default(Pending)
+  createdAt        DateTime @default(now())
+
+  // Relasi
+  user             tb_user @relation(fields: [userId], references: [id])
+  destination      tb_destination @relation(fields: [destinationId], references: [id])
+  pickupLocation   tb_pickup_location @relation(fields: [pickupLocationId], references: [id])
+  schedule         tb_schedule @relation(fields: [scheduleId], references: [id])
+  payment          tb_payment?
+}
+
+enum BookingStatus {
+  Pending
+  Confirmed
+  Cancelled
+}
