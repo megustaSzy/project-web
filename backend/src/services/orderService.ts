@@ -65,7 +65,7 @@ export const createOrder = async (data: OrderData) => {
         jadwal: new Date(`${data.jadwal}T00:00:00.000Z`),
         quantity: data.quantity,
         totalPrice,
-        status: Status.Pending, // ✅ enum sesuai schema
+        status: Status.Pending,
       },
     });
 
@@ -74,9 +74,9 @@ export const createOrder = async (data: OrderData) => {
       success: true,
     };
   } catch (error) {
-    console.error("❌ Error createOrder:", error);
+    console.error("error createOrder:", error);
     return {
-      message: "Gagal membuat pesanan",
+      message: "gagal membuat pesanan",
       success: false,
     };
   }
