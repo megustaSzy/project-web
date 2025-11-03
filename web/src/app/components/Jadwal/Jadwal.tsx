@@ -2,7 +2,7 @@
 
 export default function Jadwal() {
   return (
-    <section
+    <section id = "Jadwal"
       className="h-screen flex flex-col md:flex-row items-center justify-between px-8 md:px-24 bg-white"
     >
       {/* Kiri - Teks */}

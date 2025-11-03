@@ -5,7 +5,7 @@ export default function KontakPage() {
   return (
     <div className="bg-white min-h-screen flex flex-col justify-between">
       {/* Bagian Utama */}
-      <section className="px-8 md:px-20 py-16 flex flex-col md:flex-row justify-between gap-12">
+      <section id = "Kontak" className="px-8 md:px-20 py-16 flex flex-col md:flex-row justify-between gap-12">
         {/* Kolom Kiri (Kontak) */}
         <div className="flex-1">
           <h2 className="text-4xl font-bold text-gray-900 mb-8">Kontak</h2>

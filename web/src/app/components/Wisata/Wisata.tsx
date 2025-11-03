@@ -4,7 +4,8 @@ import { ArrowUpRight } from "lucide-react";
 
 export default function Wisata() {
   return (
-    <section className="h-screen flex flex-col justify-center px-8 md:px-24 bg-white">
+    <section id = "Wisata"
+    className="h-screen flex flex-col justify-center px-8 md:px-24 bg-white">
       {/* Header */}
      <div className="flex flex-col items-center justify-center mb-10 text-center">
   <h2 className="text-5xl font-bold text-gray-900 leading-tight">

@@ -12,12 +12,12 @@ interface NavItemType {
 
 export default function Navbar() {
   const navItems: NavItemType[] = [
-    { label: "Beranda", href: "#" },
-    { label: "Wisata", href: "#" },
-    { label: "Jadwal", href: "#" },
-    { label: "Testimoni", href: "#" },
-    { label: "Tiket", href: "#" },
-    { label: "Kontak", href: "#" },
+    { label: "Beranda", href: "#Hero" },
+    { label: "Wisata", href: "#Wisata" },
+    { label: "Jadwal", href: "#Jadwal" },
+    { label: "Testimoni", href: "#Testimoni" },
+    { label: "Tiket", href: "#Tiket" },
+    { label: "Kontak", href: "#Kontak" },
   ];
 
   return (
