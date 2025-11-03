@@ -19,7 +19,7 @@ export default function TestimoniSection() {
   return (
     <section id = "Testimoni"   
       className="w-full py-24 px-6 md:px-12 bg-cover bg-center bg-no-repeat"
-      style={{ backgroundImage: "url('/images/testimonibg.png')" }}
+      style={{ backgroundImage: "url('/images/bgts.jpg')" }}
     >
       <div className="bg-white/80 backdrop-blur-sm w-full py-16 rounded-3xl shadow-lg">
         <div className="max-w-6xl mx-auto text-center">
