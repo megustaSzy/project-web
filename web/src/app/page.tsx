@@ -3,6 +3,7 @@ import Hero from "./components/Hero/Hero";
 import Jadwal from "./components/Jadwal/Jadwal";
 import Testimoni from "./components/Testimoni";
 import Wisata from "./components/Wisata/Wisata";
+import Kontak from "./components/Kontak/Kontak";
 export default function Home() {
   return (
    <main>
@@ -12,6 +13,7 @@ export default function Home() {
         <Jadwal/>
         <Testimoni/>
         <Wisata/>
+        <Kontak/>
       </main>
 
   );
