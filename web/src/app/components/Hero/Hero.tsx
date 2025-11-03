@@ -20,14 +20,16 @@ export default function Hero() {
 
       {/* Konten */}
       <div className="relative z-10 max-w-2xl text-left ml-[-90]">
-        <HeroSubtitle text="Quality cleaning at a fair price." />
-        <HeroTitle title="Specialized, efficient, and thorough cleaning services" />
-        <HeroDescription text="We provide performing cleaning tasks using the least amount of time, energy, and money." />
+        <HeroSubtitle text="Pelayanan Transportasi Integrasi Wisata." />
+        <HeroTitle title="Pilih Destinasi Wisatamu" />
+        <HeroDescription text="Gunakan Layanan Kami Untuk Pengalaman Wisatamu Yang Lebih Baik." />
         <HeroButtons
           primaryText="Ayo Liburan"
           secondaryText="View all Services"
         />
       </div>
     </section>
+
+    
   );
 }
