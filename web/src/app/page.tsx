@@ -13,11 +13,7 @@ export default function Home() {
         <Wisata/>
         <Jadwal/>
         <Testimoni/>
-<<<<<<< HEAD
-        <Wisata/>
         <Kontak/>
-=======
->>>>>>> a0926143b808c6261127e65a87a7e9fa5f33c0b7
       </main>
 
   );
