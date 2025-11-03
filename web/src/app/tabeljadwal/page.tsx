@@ -34,7 +34,7 @@ export default function TabelJadwal() {
         </h1>
 
         {/* Dropdown */}
-        <div className="mb-10 flex justify-center">
+        <div className="mb-10 flex justify-left">
           <select
             value={terminal}
             onChange={(e) => setTerminal(e.target.value)}
