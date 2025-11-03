@@ -6,15 +6,12 @@ export default function Wisata() {
   return (
     <section className="h-screen flex flex-col justify-center px-8 md:px-24 bg-white">
       {/* Header */}
-      <div className="flex flex-col md:flex-row items-start justify-between mb-10">
-        <h2 className="text-5xl font-bold text-gray-900 leading-tight">
-          Pilih Tujuan Wisatamu <br /> Sekarang
-        </h2>
-        <div className="mt-4 md:mt-0">
-          <h3 className="text-xl font-semibold text-gray-800">Services</h3>
-          <p className="text-gray-600">Pilih dan booking paket wisata</p>
-        </div>
-      </div>
+     <div className="flex flex-col items-center justify-center mb-10 text-center">
+  <h2 className="text-5xl font-bold text-gray-900 leading-tight">
+    Pilih Tujuan Wisatamu Sekarang
+  </h2>
+</div>
+
 
       {/* Konten Wisata */}
       <div className="flex flex-col md:flex-row items-start justify-between gap-8">
