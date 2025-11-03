@@ -11,22 +11,32 @@ interface UserData {
 
 // ambil user dari DB
 export const getAllUsers = async () => {
-    return prisma.tb_user.findMany({
-        orderBy: {
-            id: 'asc'
-        }
-    });
+  return prisma.tb_user.findMany({
+    orderBy: { id: "asc" },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
+    },
+  });
 };
 
 // ambil user berdasarkan ID
 
 export const getUserById = async (id: number) => {
-    return prisma.tb_user.findUnique({
-        where: {
-            id
-        }
-    })
-}
+  return prisma.tb_user.findUnique({
+    where: { id },
+    select: {
+      id: true,
+      name: true,
+      email: true,
+      role: true,
+      createdAt: true,
+    },
+  });
+};
 
 
 // cek email apakah sudah diapkai user lain

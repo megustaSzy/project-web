@@ -1,45 +1,45 @@
 import { createDestination, getAllDestinations } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
 
-// GET destinations
-export const GET = async() => {
-    try {
-        const destination = await getAllDestinations();
+// 🟢 GET semua destinasi
+export const GET = async () => {
+  try {
+    const destinations = await getAllDestinations();
 
-        return NextResponse.json({
-            destination
-        })
-    } catch (error) {
-        console.log(error)
+    return NextResponse.json({
+      destinations,
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ 
+        message: "gagal mengambil data destination", 
+        success: false },
+    );
+  }
+};
 
-        return NextResponse.json({
-            message: "gagal mengambil data tujuan",
-            success: false
-        })
-    }
-}
-
-// POST destination
+// 🟡 POST buat destinasi baru
 export const POST = async (request: NextRequest) => {
-    try {
-        const data = await request.json();
-            
-        const result = await createDestination(data);
-    
-        if(!result.success) {
-            return NextResponse.json(result);
-        }
-        
-        return NextResponse.json({
-            message: "user berhasil dibuat",
-            success: true
-        });
-            
-        } catch (error) {
-            console.error(error);
-            return NextResponse.json({
-                message: "terjadi kesalahan saat membuat user",
-                success: false
-            })
-        }
-}
+  try {
+    const data = await request.json();
+
+    // Validasi input sederhana
+    if (!data.name || !data.notelp || !data.price || !data.location) {
+      return NextResponse.json(
+        { message: "data tidak lengkap", success: false },
+        { status: 400 }
+      );
+    }
+
+    const result = await createDestination(data);
+    const status = result.success ? 201 : 400;
+
+    return NextResponse.json(result, { status });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "terjadi kesalahan saat membuat destination", success: false },
+      { status: 500 }
+    );
+  }
+};

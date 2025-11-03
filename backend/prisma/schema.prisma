@@ -32,9 +32,10 @@ enum Role {
 
 model tb_destination {
   id            Int        @id @default(autoincrement())
-  name          String     
-  description   String
-  imageUrl      String
+  name          String
+  notelp        String     
+  description   String?
+  imageUrl      String?
   price         Int
   location      String
   createdAt     DateTime  @default(now())
