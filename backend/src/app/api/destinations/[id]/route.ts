@@ -1,4 +1,5 @@
 import { PrismaClient } from "@/generated/prisma";
+import { getDestinationsById } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
 
 const prisma = new PrismaClient();
@@ -73,19 +74,13 @@ export const PUT = async(request: NextRequest, { params }: { params: { id: strin
         success: true
     })
 }
-
-
 // GET by ID
 
 export const GET = async (request: NextRequest,  { params }: { params: {id: string} }) => {
 
     const id = params.id
 
-    const destination = await prisma.tb_destination.findUnique({
-        where: {
-            id: Number(id)
-        }
-    })
+    const destination = await getDestinationsById(Number(id))
 
     if(!destination) {
         return NextResponse.json({

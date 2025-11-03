@@ -1,18 +1,10 @@
-import { PrismaClient } from "@/generated/prisma";
+import { createDestination, getAllDestinations } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
-
-
-const prisma = new PrismaClient();
-
 
 // GET destinations
 export const GET = async() => {
     try {
-        const destination = await prisma.tb_destination.findMany({
-            orderBy: {
-                id: 'asc'
-            }
-        })
+        const destination = await getAllDestinations();
 
         return NextResponse.json({
             destination
@@ -33,44 +25,23 @@ export const GET = async() => {
 export const POST = async (request: NextRequest) => {
     try {
         const data = await request.json();
-
-        const check = await prisma.tb_destination.findFirst({
-            where: {
-                name: data.name
-            },
-            select: {
-                name: true
-            }
-        })
-
-        if(check) {
-            return {
-                message: "nama destinasi gagal disimpan",
-                success: false
-            };
+            
+        const result = await createDestination(data);
+    
+        if(!result.success) {
+            return NextResponse.json(result);
         }
-
-        await prisma.tb_destination.create({
-            data: {
-                name: data.name,
-                description: data.description,
-                imageUrl: data.imageUrl,
-                price: data.price,
-                location: data.location
-            }
-        })
-
+        
         return NextResponse.json({
-            message: "data destinasi berhasil ditambahkan",
+            message: "user berhasil dibuat",
             success: true
-        })
-
-    } catch (error) {
-        console.log(error)
-
-        return NextResponse.json({
-            message: "gagal membuat destinasi",
-            success: false
-        })
-    }
+        });
+            
+        } catch (error) {
+            console.error(error);
+            return NextResponse.json({
+                message: "terjadi kesalahan saat membuat user",
+                success: false
+            })
+        }
 }
