@@ -11,10 +11,15 @@ export default function Home() {
         
         <Navbar />
         <Hero />
-        <Wisata/>
+        <section id="wisata">
+  <Wisata />
+</section>
         <Jadwal/>
         <Testimoni/>
-        <Kontak/>
+        <section id="kontak">
+  <Kontak />
+</section>
+      
       </main>
 
   );
