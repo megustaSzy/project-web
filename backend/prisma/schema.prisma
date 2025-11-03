@@ -20,6 +20,7 @@ model tb_user {
   email     String   @unique
   password  String
   role      Role     @default(User)
+  orders    tb_order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
@@ -40,17 +41,21 @@ model tb_destination {
   location      String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  orders        tb_order[]
 }
 
 model tb_order {
   id          Int       @id @default(autoincrement())
-  userid      Int
+  userId      Int
   destinationId Int
   jadwal      String
   quantity    Int
   totalPrice  Int
   status      Status @default(Pending)
   createdAt   DateTime  @default(now())
+
+  user        tb_user     @relation(fields: [userId], references: [id])
+  destination tb_destination    @relation(fields: [destinationId], references: [id])
 }
 
 enum Status {
