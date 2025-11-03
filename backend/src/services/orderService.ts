@@ -11,7 +11,7 @@ interface OrderData {
   quantity: number;
 }
 
-// 🔵 Ambil semua pesanan
+// Ambil semua pesanan
 export const getAllOrders = async () => {
   return prisma.tb_order.findMany({
     include: {
@@ -22,7 +22,7 @@ export const getAllOrders = async () => {
   });
 };
 
-// 🟢 Ambil pesanan berdasarkan userId
+// Ambil pesanan berdasarkan userId
 export const getOrdersByUserId = async (userId: number) => {
   return prisma.tb_order.findMany({
     where: { userId },
@@ -33,7 +33,7 @@ export const getOrdersByUserId = async (userId: number) => {
   });
 };
 
-// 🟣 Ambil pesanan berdasarkan ID
+// Ambil pesanan berdasarkan ID
 export const getOrderById = async (id: number) => {
   return prisma.tb_order.findUnique({
     where: { id },
