@@ -21,6 +21,24 @@ export const getAllOrders = async () => {
   });
 };
 
-
+export const getOrdersByUserId = async(userId: number) => {
+    return prisma.tb_order.findMany({
+        where: {
+            userId
+        },
+        include: {
+            destination: {
+                select: {
+                    name: true,
+                    price: true,
+                    location: true
+                }
+            },
+        },
+        orderBy: {
+            id: 'desc'
+        }
+    })
+}
 
 
