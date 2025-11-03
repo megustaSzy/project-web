@@ -14,6 +14,7 @@ export default function TestimoniSection() {
       name: "Citra",
       text: "Pelayanan cepat dan nyaman! Sangat direkomendasikan untuk liburan keluarga.",
     },
+    
   ];
 
   return (
