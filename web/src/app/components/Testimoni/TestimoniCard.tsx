@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Section } from "lucide-react";
 
 interface TestimoniCardProps {
   name: string;
@@ -9,7 +9,8 @@ interface TestimoniCardProps {
 
 export default function TestimoniCard({ name, image, text }: TestimoniCardProps) {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden w-full md:w-[300px] border border-gray-200">
+    <Section>id = "Testimoni"
+    <div id = "Testimoni" className="bg-white rounded-xl shadow-md overflow-hidden w-full md:w-[300px] border border-gray-200">
       <div className="w-full h-64 relative">
         <Image
           src={image}
@@ -34,5 +35,6 @@ export default function TestimoniCard({ name, image, text }: TestimoniCardProps)
         </div>
       </div>
     </div>
+    </Section>  
   );
 }

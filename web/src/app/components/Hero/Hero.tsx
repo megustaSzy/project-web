@@ -7,7 +7,7 @@ import HeroButtons from "./HeroButtons";
 
 export default function Hero() {
   return (
-    <section
+    <section id ="Hero"
       className="relative h-[85vh] flex items-center justify-center text-white"
       style={{
         backgroundImage: "url('/images/bg.png')",
