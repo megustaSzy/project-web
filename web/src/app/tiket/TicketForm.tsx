@@ -54,7 +54,7 @@ Jumlah Tiket: ${jumlah}`
         <option value="Stasiun Tanjung Karang">Stasiun Tanjung Karang</option>
       </select>
 
-      <p className="text-sm text-gray-700 italic -mb-0">
+      <p className="text-sm text-gray-700 italic mb-0">
         *Lihat daftar jadwal di menu{" "}
         <span className="font-semibold text-blue-800">Jadwal</span>.
       </p>

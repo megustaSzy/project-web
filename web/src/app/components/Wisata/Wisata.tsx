@@ -74,14 +74,21 @@ export default function Wisata() {
         </div>
 
         {/* Kartu Coming Soon */}
-        <div className="bg-gray-50 rounded-2xl shadow-lg w-full md:w-1/3 flex flex-col items-center justify-center p-8">
-          <p className="text-xl font-semibold text-gray-700 mb-4">
-            Coming Soon
-          </p>
-          <div className="bg-white rounded-full p-3 shadow-md">
-            <ArrowUpRight size={24} className="text-green-600" />
-          </div>
-        </div>
+        <div className="bg-white/90 backdrop-blur-md rounded-2xl shadow-2xl w-full md:w-1/3 flex flex-col items-center justify-center p-10 transition-all duration-300 hover:shadow-blue-200 hover:-translate-y-1">
+  <p className="text-2xl font-bold text-gray-800 mb-5 tracking-wide">
+    Coming Soon
+  </p>
+
+  <div className="bg-gradient-to-r from-blue-700 to-blue-900 rounded-full p-4 shadow-lg hover:scale-105 transition-transform duration-300">
+    <ArrowUpRight size={28} className="text-white" />
+  </div>
+
+  <p className="text-sm text-gray-600 mt-4 text-center">
+    Fitur ini sedang dalam tahap pengembangan.  
+    <br /> Nantikan segera!
+  </p>
+</div>
+
       </div>
     </section>
   );
