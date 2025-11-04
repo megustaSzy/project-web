@@ -1,18 +1,26 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { ArrowUpRight } from "lucide-react";
 
 export default function Wisata() {
-  return (
-    <section id = "Wisata"
-    className="h-screen flex flex-col justify-center px-8 md:px-24 bg-white">
-      {/* Header */}
-     <div className="flex flex-col items-center justify-center mb-10 text-center">
-  <h2 className="text-5xl font-bold text-gray-900 leading-tight">
-    Pilih Tujuan Wisatamu Sekarang
-  </h2>
-</div>
+  const router = useRouter(); // ✅ Hook untuk navigasi antar halaman
 
+  const handlePesan = () => {
+    router.push("/tiket"); // arahkan ke halaman /tiket
+  };
+
+  return (
+    <section
+      id="Wisata"
+      className="h-screen flex flex-col justify-center px-8 md:px-24 bg-white"
+    >
+      {/* Header */}
+      <div className="flex flex-col items-center justify-center mb-10 text-center">
+        <h2 className="text-5xl font-bold text-gray-900 leading-tight">
+          Pilih Tujuan Wisatamu Sekarang
+        </h2>
+      </div>
 
       {/* Konten Wisata */}
       <div className="flex flex-col md:flex-row items-start justify-between gap-8">
@@ -31,7 +39,10 @@ export default function Wisata() {
               Pantai Mutun terletak di Kabupaten Pesawaran, Lampung, dan dikenal
               sebagai destinasi favorit wisata keluarga.
             </p>
-            <button className="flex items-center gap-2 text-blue-700 font-medium border border-blue-700 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition">
+            <button
+              onClick={handlePesan}
+              className="flex items-center gap-2 text-blue-700 font-medium border border-blue-700 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition"
+            >
               Pesan Sekarang <ArrowUpRight size={16} />
             </button>
           </div>
@@ -53,7 +64,10 @@ export default function Wisata() {
               suasana yang lebih tenang dengan keindahan pasir putih serta
               panorama laut biru.
             </p>
-            <button className="flex items-center gap-2 text-blue-700 font-medium border border-blue-700 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition">
+            <button
+              onClick={handlePesan}
+              className="flex items-center gap-2 text-blue-700 font-medium border border-blue-700 px-4 py-2 rounded-lg hover:bg-blue-700 hover:text-white transition"
+            >
               Pesan Sekarang <ArrowUpRight size={16} />
             </button>
           </div>
@@ -62,7 +76,7 @@ export default function Wisata() {
         {/* Kartu Coming Soon */}
         <div className="bg-gray-50 rounded-2xl shadow-lg w-full md:w-1/3 flex flex-col items-center justify-center p-8">
           <p className="text-xl font-semibold text-gray-700 mb-4">
-            CoomingSoon
+            Coming Soon
           </p>
           <div className="bg-white rounded-full p-3 shadow-md">
             <ArrowUpRight size={24} className="text-green-600" />
