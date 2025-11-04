@@ -5,7 +5,7 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
+  provider = "prisma-client-js"
   output   = "../src/generated/prisma"
 }
 
@@ -14,17 +14,52 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model tb_user {
   id        Int      @id @default(autoincrement())
-  name      String
+  name      String   @db.VarChar(50)
   email     String   @unique
   password  String
   role      Role     @default(User)
+  orders    tb_order[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
 }
 
 enum Role {
   Admin
   User
+}
+
+model tb_destination {
+  id            Int        @id @default(autoincrement())
+  name          String
+  notelp        String     
+  description   String?
+  imageUrl      String?
+  price         Int
+  location      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        tb_order[]
+}
+
+model tb_order {
+  id          Int       @id @default(autoincrement())
+  userId      Int
+  destinationId Int
+  jadwal      DateTime
+  quantity    Int
+  totalPrice  Int
+  status      Status @default(Pending)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  user        tb_user     @relation(fields: [userId], references: [id])
+  destination tb_destination    @relation(fields: [destinationId], references: [id])
+}
+
+enum Status {
+  Pending
+  Paid
 }

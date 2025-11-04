@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
      <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar /> {/* ✅ ini akan muncul di semua halaman */}
+        <Navbar /> 
         {children}
       </body>
     </html>
