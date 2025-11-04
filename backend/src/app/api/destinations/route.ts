@@ -1,7 +1,7 @@
 import { createDestination, getAllDestinations } from "@/services/destinationService";
 import { NextRequest, NextResponse } from "next/server";
 
-// 🟢 GET semua destinasi
+// GET semua destinasi
 export const GET = async () => {
   try {
     const destinations = await getAllDestinations();
@@ -18,10 +18,19 @@ export const GET = async () => {
   }
 };
 
-// 🟡 POST buat destinasi baru
+//POST buat destinasi baru
 export const POST = async (request: NextRequest) => {
   try {
     const data = await request.json();
+
+    const { role } = data;
+
+    if(role != "Admin") {
+      return NextResponse.json({
+        message: "Akses ditolak hanya admin yg bisa menambah destinasi",
+        success: false
+      })
+    }
 
     // Validasi input sederhana
     if (!data.name || !data.notelp || !data.price || !data.location) {

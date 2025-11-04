@@ -14,7 +14,7 @@ export const POST = async(request: NextRequest) => {
         /// validasi input
         if(!email || !password) {
             return NextResponse.json({
-                message: "email wajib diisi",
+                message: "email dan password wajib diisi",
                 success: false
             });
         };
@@ -33,25 +33,24 @@ export const POST = async(request: NextRequest) => {
         }
 
         // bandingkan hash
-        const isValid = await bcrypt.compare(password, user.password);
-        if(!isValid) {
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+
+        if(!isPasswordValid) {
             return NextResponse.json({
                 message: "password salah",
                 success: false
             });
         }
 
+
+        const { password: _, ...userWithoutPassword } = user;
         // sukses login
 
         return NextResponse.json({
             message: "Login berhasil",
             success: true,
-            user: {
-                id: user.id,
-                name: user.name,
-                email: user.email,
-                role: user.role
-            }
+            user: userWithoutPassword,
         });
 
     } catch (error) {

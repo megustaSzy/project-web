@@ -8,12 +8,12 @@ const prisma = new PrismaClient();
 
 export const POST = async (request: NextRequest) => {
     try {
-        const { name, email, password } = await request.json();
+        const { name, email, password, role } = await request.json();
 
         // validasi dta input
         if(!name || !email || !password) {
             return NextResponse.json({
-                message: "nama, email, wajib diisi",
+                message: "nama, email, password wajib diisi",
                 success: false
             })
         }
@@ -41,8 +41,14 @@ export const POST = async (request: NextRequest) => {
                 name,
                 email,
                 password: hashedPassword, // 123456
-                role: 'User'
+                role: role || "User"
             },
+            select: {
+                id: true,
+                name: true,
+                email: true,
+                role: true
+            }
         });
 
         return NextResponse.json({
