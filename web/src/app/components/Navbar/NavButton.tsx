@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { 
+  DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem 
+} from "@/components/ui/dropdown-menu"
 
 export default function NavButton() {
   const [user, setUser] = useState<{ name: string; image: string } | null>(null);
