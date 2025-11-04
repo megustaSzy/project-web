@@ -5,7 +5,7 @@ import Testimoni from "./components/Testimoni";
 import Wisata from "./components/Wisata/Wisata";
 import Kontak from "./components/Kontak/Kontak";
 
-import tabeljadwal from "./tabeljadwal/page";export default function Home() {
+
 import tabeljadwal from "./tabeljadwal/page";
 export default function Home() {
   return (
