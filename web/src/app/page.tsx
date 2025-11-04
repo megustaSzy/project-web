@@ -4,14 +4,14 @@ import Jadwal from "./components/Jadwal/Jadwal";
 import Testimoni from "./components/Testimoni";
 import Wisata from "./components/Wisata/Wisata";
 import Kontak from "./components/Kontak/Kontak";
-import tabeljadwal from "./components/Jadwal/TabelJadwal";
-export default function Home() {
+import tabeljadwal from "./tabeljadwal/page";export default function Home() {
   return (
    <main>
         
         {/* <Navbar /> */}
         <Hero />
         <section id="wisata">
+          
   <Wisata />
 </section>
         <Jadwal/>
