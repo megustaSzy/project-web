@@ -17,7 +17,7 @@ export default function Hero() {
       id="Hero"
       className="relative h-[85vh] flex items-center justify-center text-white"
       style={{
-        backgroundImage: "url('/images/bg.png')",
+        backgroundImage: "url('/images/bg.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -26,7 +26,7 @@ export default function Hero() {
       <div className="absolute inset-0 bg-black/40" />
 
       {/* Konten */}
-      <div className="relative z-10 max-w-2xl text-left ml-[-90px]">
+      <div className="relative z-10 max-w-2xl text-left ml-[-90px] font-bold">
         <HeroSubtitle text="Pelayanan Transportasi Integrasi Wisata." />
         <HeroTitle title="Pilih Destinasi Wisatamu" />
         <HeroDescription text="Gunakan Layanan Kami Untuk Pengalaman Wisatamu Yang Lebih Baik." />
