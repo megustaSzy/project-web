@@ -43,6 +43,18 @@ export default function TiketPage() {
             required
           />
 
+{/* Pilih Penjemputan */}
+          <select
+            value={jadwal}
+            onChange={(e) => setJadwal(e.target.value)}
+            className="w-full border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-800"
+            required
+          >
+            <option value="">Pilih Jadwal Anda</option>
+            <option value="Pagi">Terminal Rajabasa</option>
+            <option value="Siang">Stasiun Tanjung Karang</option>
+          </select>
+
           {/* Pilih Jadwal */}
           <select
             value={jadwal}
@@ -51,9 +63,11 @@ export default function TiketPage() {
             required
           >
             <option value="">Pilih Jadwal Anda</option>
-            <option value="Pagi">Pagi</option>
-            <option value="Siang">Siang</option>
-            <option value="Malam">Malam</option>
+            <option value="Pagi"> A1</option>
+            <option value="Siang">B1</option>
+            <option value="Malam">C1</option>
+             <option value="Siang">D1</option>
+            <option value="Malam">E1</option>
           </select>
 
           {/* Jumlah Tiket */}
